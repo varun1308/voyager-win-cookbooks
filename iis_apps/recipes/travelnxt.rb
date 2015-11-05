@@ -11,7 +11,14 @@ apps = search(:aws_opsworks_app, "deploy:true") rescue []
 app = apps.find {|x| x[:shortname] == "travelnxt"}
 if app
 	Chef::Log.debug "Found #{app[:shortname]} to deploy on the stack. Assuming travelnxt website is same."
-
+    
+    #Delete the default iis website if host header for this website is empty
+    if node['travelnxt']['host_header'].empty?
+        iis_site 'Default Web Site' do
+            action [:stop, :delete]
+        end
+    end
+    
 	iis_apps_website node['travelnxt']['site_name'] do
 	  host_header node['travelnxt']['host_header']
 	  port node['travelnxt']['port']
