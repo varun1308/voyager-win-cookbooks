@@ -12,7 +12,7 @@ app = apps.find {|x| x[:shortname] == "travelnxt"}
 if app
 	Chef::Log.debug "Found #{app[:shortname]} to deploy on the stack. Assuming travelnxt website is same."
 
-	win_apps_website node['travelnxt']['site_name'] do
+	iis_apps_website node['travelnxt']['site_name'] do
 	  host_header node['travelnxt']['host_header']
 	  port node['travelnxt']['port']
 	  protocol node['travelnxt']['protocol']
