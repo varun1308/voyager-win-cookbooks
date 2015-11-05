@@ -6,6 +6,7 @@
 
 Chef::Log.level = :debug
 
+include_recipe 'iis'
 
 apps = search(:aws_opsworks_app, "deploy:true") rescue []
 app = apps.find {|x| x[:shortname] == "travelnxt"}
