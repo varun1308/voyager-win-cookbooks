@@ -32,6 +32,7 @@ def do_s3_file(resource_action)
 
   obj = ::Aws::S3::Object.new(bucket_name: new_resource.bucket, key: remote_path, client: s3)
   s3url = obj.presigned_url(:get, expires_in: 300)
+  Chef::Log.debug("formed s3_url: #{s3url}")
 
   remote_file new_resource.name do
     path new_resource.path
