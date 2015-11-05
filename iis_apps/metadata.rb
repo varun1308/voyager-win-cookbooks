@@ -5,3 +5,7 @@ license 'all_rights'
 description 'Installs/Configures iis_apps'
 long_description 'Installs/Configures iis_apps'
 version '0.1.0'
+
+depends 'iis'
+depends 'windows'
+depends 'aws'
