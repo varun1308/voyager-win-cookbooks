@@ -1,0 +1,11 @@
+#travelnxt website attributes
+default['travelnxt']['site_name'] = 'travelnxt'
+default['travelnxt']['host_header'] = ''
+default['travelnxt']['port'] = 80
+default['travelnxt']['protocol'] = :http
+default['travelnxt']['runtime_version'] = '4.0'
+default['travelnxt']['site_base_directory'] = "#{ENV['SYSTEMDRIVE']}\\inetpub\\wwwroot"
+default['travelnxt']["should_replace_web_config"] = false
+default['travelnxt']["new_web_config"] = nil
+default['travelnxt']["web_config_erb"] = nil
+default['travelnxt']["web_config_params"] = Hash.new
