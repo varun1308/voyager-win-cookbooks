@@ -12,13 +12,18 @@ app = apps.find {|x| x[:shortname] == "travelnxt"}
 if app
 	Chef::Log.debug "Found #{app[:shortname]} to deploy on the stack. Assuming travelnxt website is same."
     
+    #travelnxt requires url rewriting. Install the same
+    windows_package 'IIS URL Rewrite Module 2' do
+	  source node['iis_urlrewrite']['url']
+	  checksum node['iis_urlrewrite']['checksum']
+	  action :install
+	  notifies :restart, "service[iis]"
+	end
+
     #Delete the default iis website if host header for this website is empty
-    if node['travelnxt']['host_header'].empty?
-        iis_site 'Default Web Site' do
-            action [:stop, :delete]
-        end
-    end
+    include_recipe 'iis::remove_default_site'
     
+    #setup travelnxt
 	iis_apps_website node['travelnxt']['site_name'] do
 	  host_header node['travelnxt']['host_header']
 	  port node['travelnxt']['port']
