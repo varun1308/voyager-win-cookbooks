@@ -1,0 +1,7 @@
+name 'win_service_apps'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures win_service_apps'
+long_description 'Installs/Configures win_service_apps'
+version '0.1.0'
