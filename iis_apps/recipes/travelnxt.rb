@@ -20,7 +20,7 @@ if app
     statesrvs = search(
 	  :node,
 	  "role: stateserver"
-	)
+	) rescue []
 
 	#values to define for configsrv custom json are ['mongodb']['config']['port'],
 	if statesrvs.length != 1
