@@ -40,7 +40,7 @@ instances.each do |instance|
 	Chef::Log.debug "Found instance: #{instance[:hostname]} in availability zone: #{instance[:availability_zone]}"
 	availability_zone = instance[:availability_zone]
 	region = availability_zone[0,availability_zone.length-1]
-	unless !regions.include?(region)
+	unless regions.include?(region)
 		regions << region
 		Chef::Log.debug "Added region: #{region}"
 	end
