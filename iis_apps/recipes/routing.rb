@@ -9,7 +9,7 @@ Chef::Log.level = :debug
 require 'net/http'
 include_recipe 'aws'
 include_recipe 'route53'
-
+Aws.use_bundled_cert!
 #get all stacks
 stacks = search(:aws_opsworks_stack) rescue []
 
