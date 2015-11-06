@@ -13,10 +13,23 @@ app = apps.find {|x| x[:shortname] == "travelnxt"}
 if app
 	Chef::Log.debug "Found #{app[:shortname]} to deploy on the stack. Assuming travelnxt website is same."
     
-    
-
     #Delete the default iis website if host header for this website is empty
     include_recipe 'iis::remove_default_site'
+
+    #provide state server information from 'stateserver' layer
+    statesrvs = search(
+	  :node,
+	  "role: stateserver"
+	)
+
+	#values to define for configsrv custom json are ['mongodb']['config']['port'],
+	if statesrvs.length != 1
+		Chef::Log.debug "Found stateserver node: #{statesrvs.first['hostname']}."
+		node.set["travelnxt"]["web_config_params"]["stateserver"] = statesrvs.first["hostname"]
+	    end
+	else
+		Chef::Log.error "No/More than 1 state server node found in 'stateserver' layer. Please ensure single state server node is up before deploying travelnxt"
+	end
     
     #setup travelnxt
 	iis_apps_website node['travelnxt']['site_name'] do
@@ -32,6 +45,7 @@ if app
 	  web_config_params node['travelnxt']["web_config_params"]
 	  action :add
 	end
+
 else
 	Chef::Log.debug "travelnxt website not found in apps to deploy."
 end
