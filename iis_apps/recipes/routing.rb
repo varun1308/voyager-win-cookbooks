@@ -52,7 +52,7 @@ elbs = []
 regions.each do |region|
 	client = Aws::OpsWorks::Client.new(region: region)
 	resp = client.describe_elastic_load_balancers({
-		stack_id: search(:aws_opsworks_stack) .first
+		stack_id: search(:aws_opsworks_stack).first['stack_id']
 		}) 
 	if resp
 		resp.elastic_load_balancers.each do |elb|
