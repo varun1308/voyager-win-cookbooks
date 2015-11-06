@@ -7,6 +7,7 @@
 Chef::Log.level = :debug
 
 require 'net/http'
+require 'aws-sdk'
 include_recipe 'route53'
 
 #get all stacks
@@ -22,7 +23,7 @@ layers = search(
 	) rescue []
 
 layers.each do |layer|
-	Chef::Log.debug "Found layer: #{layer[:name]}"
+	Chef::Log.debug "Found layer: #{layer[:shortname]}"
 end
 
 # #get all load balancers in stack
@@ -67,7 +68,7 @@ elbs.each do |elb|
 	layer_for_elb = layers.find { |layer| layer[:layer_id] == elb.layer_id}
 
 	route53_record "create a record for elb by layer name" do
-	  name  	layer[:name] + '.' + node[:route53]["domain"]
+	  name  	layer[:shortname] + '.' + node[:route53]["domain"]
 	  value 	elb.dns_name
 	  type  	"CNAME"
 	  ttl		60
