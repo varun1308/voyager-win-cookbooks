@@ -1,0 +1,8 @@
+{ 
+	"travelnxt" :  { 
+		"web_config_erb" : "web.config.erb",
+		"web_config_params":  {
+			"env" : "qa"
+        }
+    }
+}

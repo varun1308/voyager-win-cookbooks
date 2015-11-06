@@ -24,7 +24,7 @@ if app
 
 	if statesrvs.length == 1
 		Chef::Log.debug "Found stateserver node: #{statesrvs.first['hostname']}."
-		node.set["travelnxt"]["web_config_params"]["stateserver"] = statesrvs.first["hostname"]
+		node.set["travelnxt"]["web_config_params"]["stateserver"] = statesrvs.first["private_dns_name"]
 	else
 		Chef::Log.error "No/More than 1 state server node found in 'stateserver' layer. Please ensure single state server node is up before deploying travelnxt"
 	end
