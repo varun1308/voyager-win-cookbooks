@@ -1,23 +1,19 @@
 name             'xml'
-maintainer       'Opscode, Inc.'
-maintainer_email 'cookbooks@opscode.com'
+maintainer       'Chef Software, Inc.'
+maintainer_email 'cookbooks@chef.io'
 license          'Apache 2.0'
 description      'Installs xml'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '1.2.6'
+version          '1.3.1'
 
 depends 'build-essential'
 depends 'chef-sugar'
 
-supports 'amazon'
-supports 'arch'
-supports 'centos'
-supports 'debian'
-supports 'fedora'
-supports 'freebsd'
-supports 'redhat'
-supports 'scientific'
-supports 'suse'
-supports 'ubuntu'
+%w(amazon arch centos debian fedora freebsd oracle redhat scientific suse ubuntu).each do |os|
+  supports os
+end
 
 recipe 'xml', 'Installs libxml development packages'
+
+source_url 'https://github.com/chef-cookbooks/xml' if respond_to?(:source_url)
+issues_url 'https://github.com/chef-cookbooks/xml/issues' if respond_to?(:issues_url)
