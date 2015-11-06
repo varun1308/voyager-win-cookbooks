@@ -25,10 +25,10 @@ layers.each do |layer|
 	Chef::Log.debug "Found layer: #{layer[:name]}"
 end
 
-#get all load balancers in stack
-region = node["opsworks"]["instance"]["region"]
+# #get all load balancers in stack
+# region = node["opsworks"]["instance"]["region"]
 
-Chef::Log.debug "Found region: #{region}"
+# Chef::Log.debug "Found region: #{region}"
 
 #get all instances in the stack
 instances = search(
