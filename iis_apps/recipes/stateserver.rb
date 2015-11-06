@@ -13,7 +13,7 @@ powershell_script 'install ASP.NET State Service if not already installed' do
 				Add-WindowsFeature Web-Asp-Net
 		     }
 		  EOH
-		  notifies :run, "windows_service['ASP.NET State Service']", :immediately
+		  notifies :run, "windows_service[ASP.NET State Service]", :immediately
 		end
 
 #configure asp.net state service
