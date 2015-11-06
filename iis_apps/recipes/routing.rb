@@ -7,7 +7,7 @@
 Chef::Log.level = :debug
 
 require 'net/http'
-require 'aws-sdk'
+include_recipe 'aws'
 include_recipe 'route53'
 
 #get all stacks
