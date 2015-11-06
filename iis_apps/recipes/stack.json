@@ -1,4 +1,9 @@
 { 
+	"route53" : {
+		"domain" : "clarifi.io",
+		"dns_zone_id" : "ZTTGINFYJMDVJ",
+		"fog_version" : "1.33.0"
+	},
 	"travelnxt" :  { 
 		"web_config_erb" : "web.config.erb",
 		"web_config_params":  {

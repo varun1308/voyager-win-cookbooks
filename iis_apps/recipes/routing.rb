@@ -46,6 +46,7 @@ instances.each do |instance|
 	end
 end
 
+elbs = []
 #find all load balances in the regions
 regions.each do |region|
 	client = Aws::OpsWorks::Client.new(region: region)
@@ -54,21 +55,27 @@ regions.each do |region|
 		}) 
 	if resp
 		resp.elastic_load_balancers.each do |elb|
+			elbs << elb
 			Chef::Log.debug "Found elb: #{elb.elastic_load_balancer_name} with dns_name: #{elb.dns_name} and layer_id #{elb.layer_id}"
 		end
 	end
-
 end
-#for each load balancer/elb pair, create routing for elb
 
-# route53_record "create a record for each service layer" do
-#   name  node["opsworks"]["instance"]["layers"][0] + '.' + node[:route53]["domain"]
-#   value node["opsworks"]["instance"]["private_ip"] #Net::HTTP.get(URI.parse('http://169.254.169.254/latest/meta-data/public-ipv4'))
-#   type  "A"
-#   ttl   60
-#   zone_id               node[:route53][:dns_zone_id]
-#   #aws_access_key_id     node[:custom_access_key]
-#   #aws_secret_access_key node[:custom_secret_key]
-#   overwrite true
-#   action :create
-# end
+#for each load balancer/elb pair, create routing for elb
+elbs.each do |elb|
+
+	layer_for_elb = layers.find { |layer| layer[:layer_id] == elb.layer_id}
+
+	route53_record "create a record for elb by layer name" do
+	  name  	layer[:name] + '.' + node[:route53]["domain"]
+	  value 	elb.dns_name
+	  type  	"CNAME"
+	  ttl		60
+	  zone_id 	node[:route53][:dns_zone_id]
+	  #aws_access_key_id     node[:custom_access_key]
+	  #aws_secret_access_key node[:custom_secret_key]
+	  overwrite true
+	  action :create
+	end
+end
+
