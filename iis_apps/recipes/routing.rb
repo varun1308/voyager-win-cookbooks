@@ -68,7 +68,7 @@ elbs.each do |elb|
 	layer_for_elb = layers.find { |layer| layer[:layer_id] == elb.layer_id}
 
 	route53_record "create a record for elb by layer name" do
-	  name  	layer[:shortname] + '.' + node[:route53]["domain"]
+	  name  	layer_for_elb[:shortname] + '.' + node[:route53]["domain"]
 	  value 	elb.dns_name
 	  type  	"CNAME"
 	  ttl		60
