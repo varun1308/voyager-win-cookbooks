@@ -29,3 +29,8 @@ include_recipe 'iis::mod_compress_static'
 include_recipe 'iis::mod_compress_dynamic'
 include_recipe 'iis::mod_cgi'
 include_recipe 'iis::mod_isapi'
+
+#Failed request tracing rules
+#Http redirect -not sure if required
+#Add Server name in x-server-id to iis response headers. Voyager team has a script for it.
+#setup logging directory and hourly new file creation
