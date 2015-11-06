@@ -7,17 +7,17 @@
 
 powershell_script 'install ASP.NET State Service if not already installed' do
 		  code <<-EOH
-		     $Service = Get-WmiObject -Class Win32_Service -Filter "Name='ASP.NET State Service'"
+		     $Service = Get-WmiObject -Class Win32_Service -Filter "Name='aspnet_state'"
 		     if (!$Service) {
 		        Import-Module ServerManager
 				Add-WindowsFeature Web-Asp-Net
 		     }
 		  EOH
-		  notifies :run, "windows_service[ASP.NET State Service]", :immediately
+		  notifies :run, "windows_service[aspnet_state]", :immediately
 		end
 
 #configure asp.net state service
-windows_service 'ASP.NET State Service' do
+windows_service 'aspnet_state' do
   action [:stop, :configure_startup, :start]
   startup_type :automatic
 end
