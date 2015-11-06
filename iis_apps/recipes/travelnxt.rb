@@ -16,13 +16,12 @@ if app
     #Delete the default iis website if host header for this website is empty
     include_recipe 'iis::remove_default_site'
 
-    #provide state server information from 'stateserver' layer
+    #find state server instance information from 'stateserver' layer
     statesrvs = search(
 	  :node,
 	  "role: stateserver"
 	) rescue []
 
-	#values to define for configsrv custom json are ['mongodb']['config']['port'],
 	if statesrvs.length != 1
 		Chef::Log.debug "Found stateserver node: #{statesrvs.first['hostname']}."
 		node.set["travelnxt"]["web_config_params"]["stateserver"] = statesrvs.first["hostname"]
