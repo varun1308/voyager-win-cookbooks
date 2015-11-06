@@ -10,3 +10,4 @@ depends 'iis'
 depends 'windows_firewall'
 depends 'windows'
 depends 'aws'
+depends "route53"
