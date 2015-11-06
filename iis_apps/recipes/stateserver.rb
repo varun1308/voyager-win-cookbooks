@@ -16,6 +16,21 @@ powershell_script 'install ASP.NET State Service if not already installed' do
 		  notifies :configure_startup, "windows_service[aspnet_state]", :immediately
 		end
 
+registry_key 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\aspnet_state\Parameters' do
+  values [{
+    :name => "AllowRemoteConnection",
+    :type => :dword,
+    :data => 1
+  }]
+  action :create
+end
+
+windows_firewall_rule 'ASP.Net State Service' do
+      localport '42424'
+      protocol 'TCP'
+      firewall_action :allow
+end
+
 #configure asp.net state service
 windows_service 'aspnet_state' do
   action [:stop, :configure_startup, :start]

@@ -7,5 +7,6 @@ long_description 'Installs/Configures iis_apps'
 version '0.1.0'
 
 depends 'iis'
+depends 'windows_firewall'
 depends 'windows'
 depends 'aws'
