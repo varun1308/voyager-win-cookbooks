@@ -5,3 +5,6 @@ license 'all_rights'
 description 'Installs/Configures other_apps'
 long_description 'Installs/Configures other_apps'
 version '0.1.0'
+
+depends 'windows'
+depends "route53"
