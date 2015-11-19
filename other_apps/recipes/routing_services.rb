@@ -38,12 +38,14 @@ include_recipe 'route53'
 	# }
 zone_id = data_bag_item('routing_services', 'zone_id') rescue {}
 records = data_bag_item('routing_services', 'records') rescue {}
+
 env = ''
 if node["env"]
 	env = node["env"] + '-'
 end
 
 Chef::Log.debug "Found records: #{records}"
+Chef::Log.debug "Found CNAME: #{records['CNAME']}"
 
 
 records.each do |type, items|
