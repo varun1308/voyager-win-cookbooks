@@ -3,6 +3,7 @@
 # Recipe:: routing_services
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
+Chef::Log.level = :debug
 
 require 'net/http'
 include_recipe 'route53'
@@ -41,6 +42,9 @@ env = ''
 if node["env"]
 	env = node["env"] + '-'
 end
+
+Chef::Log.debug "Found records: #{records}"
+
 
 records.each do |type, items|
 	items.each do |key, values|
