@@ -4,7 +4,8 @@
 		"data_bags": {
 			"routing_services" : {
 				"zone_id" : {
-					"id" : "Z1VIDT2C17ZYY8"
+					"id" : "Z1VIDT2C17ZYY8",
+					"domain" : "travelnxt.com"
 					},
 				"records" : {
 					"CNAME" : {

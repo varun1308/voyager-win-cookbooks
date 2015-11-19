@@ -54,7 +54,7 @@ records['CNAME'].each do |key, values|
 		#prepend env indicator to records
 		#update route53 entries for all record pairs
 		route53_record "create a record for #{value}" do
-		  name  	"#{env}#{value}"
+		  name  	"#{env}#{value}.#{zone_id['domain']}"
 		  value 	key
 		  type  	'CNAME'
 		  ttl		60
@@ -74,7 +74,7 @@ records['A'].each do |key, values|
 		#prepend env indicator to records
 		#update route53 entries for all record pairs
 		route53_record "create a record for #{value}" do
-		  name  	"#{env}#{value}"
+		  name  	"#{env}#{value}.#{zone_id['domain']}"
 		  value 	key
 		  type  	'A'
 		  ttl		60
