@@ -35,7 +35,7 @@ include_recipe 'route53'
 	# 		}
 	# 	}
 	# }
-zone_id = data_bag_item('routing_services', 'zone_id') rescue ''
+zone_id = data_bag_item('routing_services', 'zone_id') rescue {}
 records = data_bag_item('routing_services', 'records') rescue {}
 env = ''
 if node["env"]
@@ -52,7 +52,7 @@ records.each do |type, items|
 			  value 	key
 			  type  	type
 			  ttl		60
-			  zone_id 	zone_id
+			  zone_id 	zone_id["id"]
 			  #aws_access_key_id     node[:custom_access_key]
 			  #aws_secret_access_key node[:custom_secret_key]
 			  overwrite true
