@@ -10,18 +10,16 @@
 				"records" : {
 					"CNAME" : {
 						"elb.aws.com" : [
-							"logs",
 							"services",
 							"air"
 						],
 						"elb2.aws.com" : [
-							"logs2",
 							"services2",
 							"air2"
 						]
 					},
 					"A" : {
-						"10.11.10.194" : [
+						"10.11.22.222" : [
 							"apis",
 							"bizrule-apis",
 							"bookingmonitor-apis",
@@ -31,16 +29,12 @@
 							"callback-apis",
 							"content-apis",
 							"content-apis-v2",
-							"content-apis-v2",
 							"contentconfiguration-apis", 
 							"contextconfiguration-apis",
 							"engineconfiguration-apis",
 							"eva",
 							"eventvwr-logs",
 							"form-apis",
-							"frontoffice-v1",
-							"frontoffice-v1-1",
-							"frontoffice-v2",
 							"graphics",
 							"groupsystem",
 							"innventia-v1",
@@ -52,14 +46,10 @@
 							"live-v2-logs",
 							"logs",
 							"loyality-apis",
-							"manage",
-							"manage",
-							"manage-v2",
 							"mbookingexpert",
 							"mystique-logs",
 							"mystique-rules",
 							"notification-apis",
-							"oski-apis",
 							"oski-apis",
 							"paynxtpayment-apis",
 							"reporting-apis",
@@ -74,17 +64,16 @@
 							"searchpackage-apis",
 							"session-apis",
 							"synchron-logs",
-							"tand",
-							"tand",
-							"test-templar",
-							"tnc",
 							"tncrules",
 							"trams-apis",
 							"uploads",
 							"vcashpayment-apis",
 							"vexiere-v1-apis",
-							"vexiere-v2-apis",
-							"voyagerfrontoffice"
+							"vexiere-v2-apis"
+						],
+						"10.11.10.194" : [
+							"logging",
+							"transactions"
 						]
 					}
 				}
