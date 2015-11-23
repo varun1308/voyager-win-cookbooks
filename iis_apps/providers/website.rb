@@ -56,7 +56,7 @@ action :add do
 			 	  local true
 				  source "#{app_checkout}\\#{new_resource.web_erb_config}"
 				  variables(
-				  		:web_config_params => new_resource.web_config_params
+				  		:web_config_params => new_resource.web_config_params,
 				  		:env => node["env"]
 				  )
 				end
