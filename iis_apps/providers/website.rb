@@ -25,6 +25,9 @@ action :add do
 	else
 		file_name, bucket, remote_path, url = Tavisca::WinApps::Helper.parse_uri(new_resource.scm[:url])
 
+		#replace build number
+		file_name.sub('build_number', new_resource.build_number)!
+
 		#download file from s3
 		aws_s3_file ::File.join(Chef::Config["file_cache_path"],file_name) do
 		  bucket bucket

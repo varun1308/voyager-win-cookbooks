@@ -9,6 +9,7 @@ default['travelnxt']["should_replace_web_config"] = false
 default['travelnxt']["new_web_config"] = nil
 default['travelnxt']["web_config_erb"] = nil
 default['travelnxt']["web_config_params"] = Hash.new
+default['travelnxt']['build_number'] = 20
 
 #url rewrite attributes
 default['iis_urlrewrite']['url'] = 'http://download.microsoft.com/download/6/7/D/67D80164-7DD0-48AF-86E3-DE7A182D6815/rewrite_2.0_rtw_x64.msi'

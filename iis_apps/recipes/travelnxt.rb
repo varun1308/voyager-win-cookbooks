@@ -41,6 +41,7 @@ if app
 	  new_web_config node['travelnxt']["new_web_config"]
 	  web_erb_config node['travelnxt']["web_config_erb"]
 	  web_config_params node['travelnxt']["web_config_params"]
+	  build_number node['travelnxt']['build_number']
 	  action :add
 	end
 
