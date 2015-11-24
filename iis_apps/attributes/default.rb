@@ -10,6 +10,8 @@ default['travelnxt']["new_web_config"] = nil
 default['travelnxt']["web_config_erb"] = nil
 default['travelnxt']["web_config_params"] = Hash.new
 default['travelnxt']['build_number'] = 20
+default['travelnxt']['data_file'] = 'https://s3.amazonaws.com/voyager-release-archives/voyager-release-archives/frontoffice-extras_build_number.zip'
+default['travelnxt']['data_file_location'] = 'Uploads'
 
 #url rewrite attributes
 default['iis_urlrewrite']['url'] = 'http://download.microsoft.com/download/6/7/D/67D80164-7DD0-48AF-86E3-DE7A182D6815/rewrite_2.0_rtw_x64.msi'

@@ -36,7 +36,6 @@ action :add do
 		  aws_secret_access_key new_resource.scm[:password]
 		end
 
-
 		#unzip file to destination
 		windows_zipfile app_checkout do
 		  source ::File.join(Chef::Config["file_cache_path"],file_name)
@@ -83,6 +82,37 @@ action :add do
 		execute "copy #{new_resource.website_name}" do
 			command "Robocopy.exe #{app_checkout} #{website_directory} /MIR /XF .gitignore /XF web.config.erb /XD .git"
 			returns [0, 1, 3]
+		end
+
+		#download data_file
+		if new_resource.data_file
+			data_file_name, data_file_bucket, data_file_remote_path, data_file_url = Tavisca::WinApps::Helper.parse_uri(new_resource.data_file)
+
+			#replace build number
+			data_file_name.sub('build_number', new_resource.build_number)!
+
+			#download file from s3
+			aws_s3_file ::File.join(Chef::Config["file_cache_path"],data_file_name) do
+			  bucket data_file_bucket
+			  remote_path data_file_remote_path
+			  aws_access_key_id new_resource.scm[:user]
+			  aws_secret_access_key new_resource.scm[:password]
+			end
+
+			data_file_app_checkout = Chef::Config["file_cache_path"] + "\\#{new_resource.data_file_location}"
+
+			#unzip file to destination
+			windows_zipfile data_file_app_checkout do
+			  source ::File.join(Chef::Config["file_cache_path"],data_file_name)
+			  action :unzip
+			end
+
+			#move extracted files to location directory
+			# Copy files to deployment directory
+			execute "copy #{new_resource.data_file_location}" do
+				command "Robocopy.exe #{data_file_app_checkout} #{website_directory}\\#{data_file_location} /MIR /XF .gitignore /XF web.config.erb /XD .git"
+				returns [0, 1, 3]
+			end
 		end
 
 		# Create the site app pool.
