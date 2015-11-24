@@ -14,5 +14,5 @@ attribute :should_replace_web_config, :kind_of => [TrueClass, FalseClass], :defa
 attribute :web_erb_config, :kind_of => String
 attribute :web_config_params, :kind_of => Hash
 attribute :build_number, :kind_of => String, :required => true, :default => ''
-attribute :data_file, :kind_of => String, :default => ''
+attribute :data_file, :kind_of => String, :default => nil
 attribute :data_file_location, :kind_of => String, :default => ''
