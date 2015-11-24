@@ -9,7 +9,7 @@ default['travelnxt']["should_replace_web_config"] = false
 default['travelnxt']["new_web_config"] = nil
 default['travelnxt']["web_config_erb"] = nil
 default['travelnxt']["web_config_params"] = Hash.new
-default['travelnxt']['build_number'] = 20
+default['travelnxt']['build_number'] = '20'
 default['travelnxt']['data_file'] = 'https://s3.amazonaws.com/voyager-release-archives/voyager-release-archives/frontoffice-extras_build_number.zip'
 default['travelnxt']['data_file_location'] = 'Uploads'
 
