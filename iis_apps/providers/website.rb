@@ -89,7 +89,7 @@ action :add do
 			data_file_name, data_file_bucket, data_file_remote_path, data_file_url = Tavisca::WinApps::Helper.parse_uri(new_resource.data_file)
 
 			#replace build number
-			data_file_name.sub('build_number', new_resource.build_number)!
+			data_file_name = data_file_name.sub('build_number', new_resource.build_number)
 
 			#download file from s3
 			aws_s3_file ::File.join(Chef::Config["file_cache_path"],data_file_name) do
